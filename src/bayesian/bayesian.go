@@ -102,13 +102,10 @@ func (bayesian *Bayesian) Exercise(entity *Entity) error {
 			// 总的统计概率分母+1
 			p.Total.denominator++
 
-			// 其他各属性分母+1
-			for j, _ := range entity.Values {
-				p.Attributes[j].denominator++
-			}
+			// 其他各属性不变
 		}
 	}
-	//fmt.Println(task.ResultProbs)
+	fmt.Println(task.ResultProbs)
 
 	return nil
 }
@@ -161,7 +158,7 @@ func (bayesian *Bayesian) TaskOutput() string {
 		}
 
 		//fmt.Println(numerator, denominator)
-		fmt.Printf("Result %s probbility %0.08f\n", task.ResultProbs[i].ResultValue, p.P)
+		fmt.Printf("Result %s probbility [%d/%d] %0.08f\n", task.ResultProbs[i].ResultValue, numerator, denominator, p.P)
 	}
 
 	return task.ResultProbs[resultIdx].ResultValue
